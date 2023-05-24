@@ -14,11 +14,15 @@ export default function SignUp(props) {
     const [Password,setPassword]=useState("")
     const [FName,setFName]=useState("")
     const [LName,setLName]=useState("")
+    const [dietplan,setdietplan]=useState(0)
+    const [calory,setcalory]=useState(Number.MAX_VALUE)
     const docData = {
       email:Email,
       password: Password,
       fname:FName,
-      lname:LName
+      lname:LName,
+      dietplan:dietplan,
+      calory:calory
     };
     async function insertData(user_id){
       await setDoc(doc(db, "users",user_id), docData);

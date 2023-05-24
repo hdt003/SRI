@@ -5,19 +5,23 @@ import { getDocs,query } from "firebase/firestore";
 import { auth } from '../firebase';
 import deletee from "../images/delete.png"
 export default function Cart(props) {
-    console.clear();
+    // console.clear();
     let [userId,setUserId]=useState("")
     let [array,setArray]=useState([])
     let [runonce,setrunonce]=useState(0)
     let [ct,setct]=useState(0)
+    let [sum,setsum]=useState(0)
+    let temp=0
     async function fetchData() {
-        setct(0)
-        setArray([]);
-        // console.log("fetchdata")
-        const querySnapshot = await getDocs(query(collection(db,"cart",props.uid,"orders")));
-        querySnapshot.forEach((doc) => {
-        setct(++ct)
-        setArray(array => [...array, doc.data()]);
+      setct(0)
+      setArray([]);
+      // console.log("fetchdata")
+      const querySnapshot = await getDocs(query(collection(db,"cart",props.uid,"orders")));
+      querySnapshot.forEach((doc) => {
+      setct(++ct)
+      temp+=doc.data().price
+      setsum(temp)
+      setArray(array => [...array, doc.data()]);
       });
     }
     
@@ -37,12 +41,12 @@ export default function Cart(props) {
           await deleteDoc(doc(db,"cart",props.uid,"orders",oid))
           setct(0);
           fetchData();
+          console.log("deleted successfully")
         }
         catch(error)
         {
           console.log(error)
         }
-        console.log("deleted successfully")
       }
   return (
     <div className='container  text-center'>
@@ -54,7 +58,8 @@ export default function Cart(props) {
                 <div className='row'>
                 <div className='fs-3 fw-bold col-4'>My Cart</div>
                 <div className='fs-3 fw-bold col-4'>Total Items: {array.length}</div>
-                <button className="btn btn-danger fw-bold btn-lg col-3">Pay Now</button></div>
+                {/* <div className='fs-3 fw-bold col-4'>Total pay: {sum} </div> */}
+                <button className="btn btn-danger fw-bold btn-lg col-3">Pay Now: &#8377; {sum}</button></div>
                 <br />
               </div>
               <br /></div>:<h3 style={{color: `${props.mode==="light"?"black":"white"}`}}>Your Cart is Empty</h3>}

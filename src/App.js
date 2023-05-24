@@ -33,7 +33,7 @@ function App() {
           setMode("light")
             // document.body.style.backgroundColor="rgb(45,82,71)";
             document.body.style.backgroundImage="none"
-            document.body.style.backgroundImage="linear-gradient(90deg, #fcee21 0%, #ff4800 100%)";//blue //rgb(71, 194, 255)"//linear-gradient(90deg, #ff4800 0%, #dd2476 100%)
+            document.body.style.backgroundImage="linear-gradient(90deg, #3EADCF 0%, #ABE9CD 100%)";//blue //rgb(71, 194, 255)"//linear-gradient(90deg, #ff4800 0%, #dd2476 100%)
             document.body.style.color="black"
             setAlert("dark mode Enabled")
             // console.log("light")

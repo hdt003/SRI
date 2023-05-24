@@ -57,7 +57,7 @@ export default function Login(props) {
       <br/>
       <div className="container">
         <div className="text-center" ><h2>Login</h2></div>
-      <div className="my-3">
+        <div className="my-3">
         <label htmlFor="exampleFormControlInput1" className="form-label">Email address<b className='text text-danger'>*</b></label>
         <input type="email" className={`form-control ${props.mode==="light"?"light1":"dark1"}`} style={{background:`${props.mode==="light"?"white":"rgb(24,24,24)"}`,color:`${props.mode==="light"?"black":"white"}`}} id="exampleFormControlInput2" placeholder="Enter Email" onChange={(event)=>setEmail(event.target.value)}/>
         </div>

@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import Item from './Item'
 import {db} from '../firebase'
-import { getDocs,query,where,orderBy,collectionGroup } from "firebase/firestore"; 
-// import { doc, setDoc} from "firebase/firestore"; 
-
+import { getDocs,query,where,orderBy,collectionGroup, updateDoc } from "firebase/firestore"; 
+import { doc, setDoc} from "firebase/firestore"; 
+import { deleteDoc } from 'firebase/firestore';
 import ItemPage from './ItemPage';
-
+// import docref
 export default function Area(props) {
-  console.clear();
+  // console.clear();
 
   let [array,setArray]=useState([])
   var ranonce = false;
@@ -60,7 +60,7 @@ setTimeout(temp, 0);
     //   window.location.replace(`/${props.value}`);
     //   setlastmode(props.mode)
     // }
-  async function fetchData() {
+async function fetchData() {
     setArray([]);
     console.log("fetchdata")
     let q;
@@ -160,6 +160,22 @@ setTimeout(temp, 0);
   //   await deleteDoc(doc(db, "menu", "eUsn0OV4H00R3Bl6JErv"));
   //   console.log("data deleted in db");
   // }
+  // // update user field data
+  // async function updateData(){
+  //   const docRef = doc(db, "users", "AmztfpKHZ3c5Z7mFolaz5wcRagg2");
+
+  //   const data = {
+  //     dietplan: 0,
+  //     calory: Number.MAX_VALUE
+  //   };
+  //   updateDoc(docRef, data)
+  //   .then(docRef => {
+  //       console.log("A New Document Field has been added to an existing document");
+  //   })
+  //   .catch(error => {
+  //       console.log(error);
+  //   })
+  // }
 
   function titleText(){
     if(props.value==="htol")
@@ -190,6 +206,10 @@ setTimeout(temp, 0);
     <div >
       <div className="container my-4" id="area">
         <br />
+        {/* <br/>
+            <button className="btn btn-primary" onClick={updateData}>update data in db</button>
+            <br/>
+            <br/> */}
             {!isTrue ?<div>
             <h1 className="text-center" style={{color: `${props.mode==="light"?"black":"white"}`}}>Top Food Items  {titleText()}</h1>
             <div className="container">
@@ -221,11 +241,15 @@ setTimeout(temp, 0);
             
             {/* <button className="btn btn-primary" onClick={func}>isTrue</button>
             <br/> */}
-            {/*
-            <br/>
+            
+            {/* <br/>
             <button className="btn btn-primary" onClick={deleteData}>delete data in db</button>
             <br/>
-            <br/>*/}
+            <br/> */}
+            {/* <br/>
+            <button className="btn btn-primary" onClick={updateData}>update data in db</button>
+            <br/>
+            <br/> */}
 
             </div>
             
