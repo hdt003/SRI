@@ -15,7 +15,8 @@ export default function Item(props) {
     review:props.review,
     video:props.video ,
     name:props.name,
-    address:props.address
+    address:props.address,
+    calories:props.calories
   }
 },[])
   function content()

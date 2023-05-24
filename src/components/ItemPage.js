@@ -23,6 +23,7 @@ export default function ItemPage(props) {
     video:props.video ,
     name:props.name,
     address:props.address,
+    calories:props.calories,
     uid:props.uid,
     oid:str
   })
@@ -95,14 +96,15 @@ return (
         </div>
         <div className="col-6 column6 px-5" id="name"><b><p className='text-center fs-5'><hr />{props.name}<hr /></p>
         <div className='px-2' >
-        <p >{props.description}</p>
-        <p>{props.address}</p>
-        <p >{props.food_type}</p><p >{props.v}</p>
+        <p >Restaurant : {props.description}</p>
+        <p>Restaurant address : {props.address}</p>
+        <p >Food Type : {props.food_type}</p>
+        <p >Calories : {props.calories}</p>
         <p className="rating">
             <span className="heading">Rating: </span>   
             {content()}
         </p>    
-        <p className={`fs-3 text text-`} style={{color: `${props.mode==="dark"?"white":"black"}`}} >&#8377; {props.price}</p>
+        <p className={`fs-3 text text-`} style={{color: `${props.mode==="dark"?"white":"black"}`}} >Price : &#8377; {props.price}</p>
         </div>
         <div className="text-center">
           <button className="btn btn-danger fw-bold btn-lg" onClick={insertInCart}>Add To Cart</button>

@@ -144,6 +144,7 @@ async function fetchData() {
   //     price: 130,
   //     popularity: 140,
   //     address:"Sector 10, Gandhinagar",
+  //     calories: 200
   //     review:5 //1 to 5
   // }
   //   await setDoc(doc(db, "restaurant","Greenz Restaurant","items","Manchurian"), obj);
@@ -162,11 +163,12 @@ async function fetchData() {
   // }
   // // update user field data
   // async function updateData(){
-  //   const docRef = doc(db, "users", "AmztfpKHZ3c5Z7mFolaz5wcRagg2");
+  //   const docRef = doc(db, "users","zvCanhflnSXS7eY1arVymnmxeRE2");
 
   //   const data = {
   //     dietplan: 0,
-  //     calory: Number.MAX_VALUE
+  //     calory: Number.MAX_VALUE,
+  //     address:""
   //   };
   //   updateDoc(docRef, data)
   //   .then(docRef => {
@@ -228,6 +230,7 @@ async function fetchData() {
                           video={element.video?element.video:"video not found"} 
                           name={element.name?element.name:"name"}
                           review={element.review}
+                          calories={element.calories}
                           func={pull_data}
                           address={element.address}
                           mode={props.mode}
@@ -263,6 +266,7 @@ async function fetchData() {
                           video={obj2.video} 
                           name={obj2.name}
                           address={obj2.address}
+                          calories={obj2.calories}
                           mode={props.mode}
                           uid={props.uid}
                            />}

@@ -92,7 +92,7 @@ export default function Profile(props) {
                 </div>
                 <div className='col-5'>
                 <label htmlFor="exampleFormControlInput1" className="form-label">Enter Maximum calories required for each day<b className='text text-danger'>*</b></label>
-                <input className={`form-control ${props.mode==="light"?"light1":"dark1"}`} style={{background:`${props.mode==="light"?"white":"rgb(24,24,24)"}`,color:`${props.mode==="light"?"black":"white"}`}} id="exampleFormControlInput2" placeholder="Enter calories" onChange={(event)=>{setcalory(event.target.value)}}/>
+                <input className={`form-control ${props.mode==="light"?"light1":"dark1"}`} style={{background:`${props.mode==="light"?"white":"rgb(24,24,24)"}`,color:`${props.mode==="light"?"black":"white"}`}} id="exampleFormControlInput2" placeholder="Enter calories" onChange={(event)=>{setcalory(parseFloat(event.target.value))}}/>
                 <div className='d-flex justify-content-center'>
                 <button className="btn btn-danger fw-bold btn-md col-4 my-3 " onClick={() => {updateData();setclicked(0)}}>Set Calories</button>
                 </div>
