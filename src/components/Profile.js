@@ -13,6 +13,7 @@ export default function Profile(props) {
     let [dietplan,setDietplan]=useState(0)   
     let [calory,setcalory]=useState(Number.MAX_VALUE)   
     let [clicked,setclicked]=useState(0)
+    let [num,setnum]=useState(1)
     useEffect(() => {
         async function fetchData() {
             const docRef =  doc(db, "users", props.uid);
@@ -37,7 +38,15 @@ export default function Profile(props) {
     //   update user data
   async function updateData(){
     const docRef = doc(db, "users", props.uid);
-
+    if(checknum()===false)
+    {
+        setnum(0)
+        setclicked(1)
+        return;
+    }
+    else{
+        setnum(1)
+    }
     const data = {
       dietplan: 1,
       calory: calory
@@ -50,6 +59,13 @@ export default function Profile(props) {
         console.log(error);
     })
   }
+  function checknum()
+{ 
+  if (isNaN(calory)) 
+  {
+    return false;
+  }
+}
   return (
     <div>
         <div className="container">
@@ -71,7 +87,7 @@ export default function Profile(props) {
             <h2 className='p-3 bg-info bg-opacity-10 border border-info  rounded-3'>Age:</h2> */}
             </div>
             {dietplan?<div className='row'>
-            <h4 className={`p-3 col-2 bg-${props.mode==="light"?"white bg-gradient":"dark bg-gradient"}  bg-opacity-25 border border-light  rounded-3`} style={{minWidth:"90px"}}>Max Calories:</h4>
+            <h4 className={`p-3 col-2 bg-${props.mode==="light"?"white bg-gradient":"dark bg-gradient"}  bg-opacity-25 border border-light  rounded-3`} style={{minWidth:"90px"}}>Calory limit:</h4>
             <h4 className={`p-3 mx-2 col-7 bg-${props.mode==="light"?"white bg-gradient":"dark bg-gradient"}  bg-opacity-25 border border-light  rounded-3`}>{calory}   
             </h4>
             <img src={props.mode==="light"?edit :editlight} className={`p-3 mx-2 col-1 bg-${props.mode==="light"?"white bg-gradient":"dark bg-gradient"} bg-opacity-25 border border-light  rounded-3`} style={{ height: "65px",width:"65px"}}  alt="..." onClick={()=>{setclicked(!clicked)}}/>        
@@ -80,8 +96,6 @@ export default function Profile(props) {
                 <h4 >Do You want to add diet plan?</h4>
                 <div>
                 <button className="btn btn-danger fw-bold btn-lg col-1 mx-2" onClick={() => {setclicked(1);setDietplan(1);updateData()}}>Yes</button>
-                {/* </div>
-                <div> */}
                 <button className="btn btn-danger fw-bold btn-lg col-1 mx-2">No</button>
                 </div>
             </div>:""}
@@ -93,8 +107,10 @@ export default function Profile(props) {
                 <div className='col-5'>
                 <label htmlFor="exampleFormControlInput1" className="form-label">Enter Maximum calories required for each day<b className='text text-danger'>*</b></label>
                 <input className={`form-control ${props.mode==="light"?"light1":"dark1"}`} style={{background:`${props.mode==="light"?"white":"rgb(24,24,24)"}`,color:`${props.mode==="light"?"black":"white"}`}} id="exampleFormControlInput2" placeholder="Enter calories" onChange={(event)=>{setcalory(parseFloat(event.target.value))}}/>
+                <br />
+                {!num && <><div className='d-flex justify-content-center text-danger fw-bold'>Calory is a number</div><br/></>}
                 <div className='d-flex justify-content-center'>
-                <button className="btn btn-danger fw-bold btn-md col-4 my-3 " onClick={() => {updateData();setclicked(0)}}>Set Calories</button>
+                <button className="btn btn-danger fw-bold btn-md col-4 my-3 " onClick={() => {setclicked(0);updateData()}}>Set Calories</button>
                 </div>
                 </div>
             </div>:""}
