@@ -98,7 +98,7 @@ export default function Cart(props) {
                 <div className='text-center fs-3 fw-bold '>My Cart</div><br />
                   <div className='fs-3 fw-bold '>Total Items: {array.length}</div><br />
                   <div className='fs-3 fw-bold '>Total Calories: {totcalory}</div><br/>
-                  <div className='fs-3 fw-bold '>Daily calories limit: {dailycalory}</div><br/>
+                  {dc!=Number.MAX_VALUE?<div className='fs-3 fw-bold '>Daily calories limit: {dailycalory}</div>:<br/>}
                   {overload ?<div className='fs-3 fw-bold text-danger'>Your daily calories limit exceeded.</div>:""}<br/>
                   <button className="btn btn-danger fw-bold btn-lg text-center ">Pay Now: &#8377; {sum}</button>
                 </div> 
