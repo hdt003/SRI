@@ -15,7 +15,7 @@ export default function Cart(props) {
     let [dailycalory,setdailycalory]=useState(Number.MAX_VALUE)
     let [overload,setoverload]=useState(0)
     let temp=0,temp2=0
-    let dc=Number.MAX_VALUE;
+    let dc=Number.MAX_VALUE;//dailycalory
     async function fetchcartData() {
       setct(0)
       setArray([]);
@@ -95,12 +95,12 @@ export default function Cart(props) {
         {/* <div className=''> */}
           {array.length?<div className='col-6 '>
                 <div className="text-center position-fixed  col-6 mx-2">
-                <div className='text-center fs-3 fw-bold '>My Cart</div><br />
-                  <div className='fs-3 fw-bold '>Total Items: {array.length}</div><br />
-                  <div className='fs-3 fw-bold '>Total Calories: {totcalory}</div><br/>
-                  {dc!=Number.MAX_VALUE?<div className='fs-3 fw-bold '>Daily calories limit: {dailycalory}</div>:<br/>}
-                  {overload ?<div className='fs-3 fw-bold text-danger'>Your daily calories limit exceeded.</div>:""}<br/>
-                  <button className="btn btn-danger fw-bold btn-lg text-center ">Pay Now: &#8377; {sum}</button>
+                <div className='text-center fs-2 fw-bold '>My Cart</div><br />
+                  <div className='fs-4 fw-bold '>Total Items: {array.length}</div><br />
+                  <div className='fs-4 fw-bold '>Total Calories: {totcalory}</div><br/>
+                  {dailycalory!=Number.MAX_VALUE?<div className='fs-4 fw-bold '>Daily calories limit: {dailycalory}</div>:""}
+                  {overload ?<><div className='fs-4 fw-bold text-danger'>Your daily calories limit exceeded.</div></>:""}
+                  <br /><button className="btn btn-danger fw-bold btn-lg text-center ">Pay Now: &#8377; {sum}</button>
                 </div> 
                 <br />
               </div>:<h3 className="text-center col-12"style={{color: `${props.mode==="light"?"black":"white"}`}}>Your Cart is Empty</h3>}

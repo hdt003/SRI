@@ -92,6 +92,7 @@ export default function Profile(props) {
             </h4>
             <img src={props.mode==="light"?edit :editlight} className={`p-3 mx-2 col-1 bg-${props.mode==="light"?"white bg-gradient":"dark bg-gradient"} bg-opacity-25 border border-light  rounded-3`} style={{ height: "65px",width:"65px"}}  alt="..." onClick={()=>{setclicked(!clicked)}}/>        
             </div>:""}
+            {/* subscribe to diet plan */}
             {!dietplan ? <div className={`card-body my-3 text text-${props.mode==="light"?"dark":"white"}`}>
                 <h4 >Do You want to add diet plan?</h4>
                 <div>
@@ -99,6 +100,14 @@ export default function Profile(props) {
                 <button className="btn btn-danger fw-bold btn-lg col-1 mx-2">No</button>
                 </div>
             </div>:""}
+            {/* unsubscribe to diet plan */}
+            {/* {dietplan && remove2? <div className={`card-body my-3 text text-${props.mode==="light"?"dark":"white"}`}>
+                <h4 >Do You want to remove diet plan?</h4>
+                <div>
+                <button className="btn btn-danger fw-bold btn-lg col-1 mx-2" onClick={() => {setclicked(1);setDietplan(1);updateData2()}}>Yes</button>
+                <button className="btn btn-danger fw-bold btn-lg col-1 mx-2">No</button>
+                </div>
+            </div>:""} */}
             {clicked ?
                 <div className="my-3 row">
                 <div className='col-7'>
