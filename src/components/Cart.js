@@ -61,7 +61,7 @@ export default function Cart(props) {
     //   setoverload(1);
     // }
       useEffect(()=>{
-          if(runonce==0){
+          if(runonce===0){
           setct(0);
           setUserId(props.uid)
           fetchUserData();
@@ -98,7 +98,7 @@ export default function Cart(props) {
                 <div className='text-center fs-2 fw-bold '>My Cart</div><br />
                   <div className='fs-4 fw-bold '>Total Items: {array.length}</div><br />
                   <div className='fs-4 fw-bold '>Total Calories: {totcalory}</div><br/>
-                  {dailycalory!=Number.MAX_VALUE?<div className='fs-4 fw-bold '>Daily calories limit: {dailycalory}</div>:""}
+                  {dailycalory!==Number.MAX_VALUE?<div className='fs-4 fw-bold '>Daily calories limit: {dailycalory}</div>:""}
                   {overload ?<><div className='fs-4 fw-bold text-danger'>Your daily calories limit exceeded.</div></>:""}
                   <br /><button className="btn btn-danger fw-bold btn-lg text-center ">Pay Now: &#8377; {sum}</button>
                 </div> 

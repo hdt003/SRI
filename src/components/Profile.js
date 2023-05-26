@@ -14,28 +14,31 @@ export default function Profile(props) {
     let [calory,setcalory]=useState(Number.MAX_VALUE)   
     let [clicked,setclicked]=useState(0)
     let [num,setnum]=useState(1)
+    let [removebutton,setremovebutton]=useState(0)
+    let [removebutton2,setremovebutton2]=useState(0)
+    async function fetchData() {
+      const docRef =  doc(db, "users", props.uid);
+      // await setDoc(doc(db, "users",user_id), docData);
+      const docSnap =  await getDoc(docRef);
+      if (docSnap.exists()) {
+          let data=docSnap.data();
+          // console.log("Userdata:",data);
+          setEmail(data.email);
+          setFName(data.fname);
+          setLName(data.lname);
+          setDietplan(data.dietplan);
+          setcalory(data.calory);
+      }
+      else {
+      // doc.data() will be undefined in this case
+      console.log("Data not load!");
+      }     
+  }
     useEffect(() => {
-        async function fetchData() {
-            const docRef =  doc(db, "users", props.uid);
-            // await setDoc(doc(db, "users",user_id), docData);
-            const docSnap =  await getDoc(docRef);
-            if (docSnap.exists()) {
-                let data=docSnap.data();
-                // console.log("Userdata:",data);
-                setEmail(data.email);
-                setFName(data.fname);
-                setLName(data.lname);
-                setDietplan(data.dietplan);
-                setcalory(data.calory);
-            }
-            else {
-            // doc.data() will be undefined in this case
-            console.log("Data not load!");
-            }     
-        }
+        
         fetchData();
       },[]);
-    //   update user data
+    //update user data for subscribe to dietplan
   async function updateData(){
     const docRef = doc(db, "users", props.uid);
     if(checknum()===false)
@@ -50,6 +53,21 @@ export default function Profile(props) {
     const data = {
       dietplan: 1,
       calory: calory
+    };
+    updateDoc(docRef, data)
+    .then(docRef => {
+        console.log("A New Document Field has been added to an existing document");
+    })
+    .catch(error => {
+        console.log(error);
+    })
+  }
+  //   update user data for unsubscribe to dietplan
+  async function updateData2(){
+    const docRef = doc(db, "users", props.uid);
+    const data = {
+      dietplan: 0,
+      calory: Number.MAX_VALUE
     };
     updateDoc(docRef, data)
     .then(docRef => {
@@ -88,26 +106,20 @@ export default function Profile(props) {
             </div>
             {dietplan?<div className='row'>
             <h4 className={`p-3 col-2 bg-${props.mode==="light"?"white bg-gradient":"dark bg-gradient"}  bg-opacity-25 border border-light  rounded-3`} style={{minWidth:"90px"}}>Calory limit:</h4>
-            <h4 className={`p-3 mx-2 col-7 bg-${props.mode==="light"?"white bg-gradient":"dark bg-gradient"}  bg-opacity-25 border border-light  rounded-3`}>{calory}   
+            <h4 className={`p-3 mx-2 col-7 bg-${props.mode==="light"?"white bg-gradient":"dark bg-gradient"}  bg-opacity-25 border border-light  rounded-3`}>{calory!==Number.MAX_VALUE?calory:""}   
             </h4>
             <img src={props.mode==="light"?edit :editlight} className={`p-3 mx-2 col-1 bg-${props.mode==="light"?"white bg-gradient":"dark bg-gradient"} bg-opacity-25 border border-light  rounded-3`} style={{ height: "65px",width:"65px"}}  alt="..." onClick={()=>{setclicked(!clicked)}}/>        
             </div>:""}
             {/* subscribe to diet plan */}
-            {!dietplan ? <div className={`card-body my-3 text text-${props.mode==="light"?"dark":"white"}`}>
+            {!dietplan ? <button className="btn btn-danger fw-bold btn-md col-3 mx-2" onClick={()=>setremovebutton2(1)}>Add Diet Plan</button>:""}
+            { removebutton2 ? <div className={`card-body my-3 text text-${props.mode==="light"?"dark":"white"}`}>
                 <h4 >Do You want to add diet plan?</h4>
                 <div>
-                <button className="btn btn-danger fw-bold btn-lg col-1 mx-2" onClick={() => {setclicked(1);setDietplan(1);updateData()}}>Yes</button>
-                <button className="btn btn-danger fw-bold btn-lg col-1 mx-2">No</button>
+                <button className="btn btn-danger fw-bold btn-md col-1 mx-2" onClick={() => {setclicked(1);setDietplan(1);setremovebutton2(0);setcalory(Number.MAX_VALUE)}}>Yes</button>
+                <button className="btn btn-danger fw-bold btn-md col-1 mx-2" onClick={()=>setremovebutton2(0)}>No</button>
                 </div>
             </div>:""}
-            {/* unsubscribe to diet plan */}
-            {/* {dietplan && remove2? <div className={`card-body my-3 text text-${props.mode==="light"?"dark":"white"}`}>
-                <h4 >Do You want to remove diet plan?</h4>
-                <div>
-                <button className="btn btn-danger fw-bold btn-lg col-1 mx-2" onClick={() => {setclicked(1);setDietplan(1);updateData2()}}>Yes</button>
-                <button className="btn btn-danger fw-bold btn-lg col-1 mx-2">No</button>
-                </div>
-            </div>:""} */}
+
             {clicked ?
                 <div className="my-3 row">
                 <div className='col-7'>
@@ -123,6 +135,17 @@ export default function Profile(props) {
                 </div>
                 </div>
             </div>:""}
+
+            {/* unsubscribe to diet plan */}
+            {dietplan ? <button className="btn btn-danger fw-bold btn-md col-3 mx-2" onClick={()=>{setremovebutton(1);setclicked(0)}}>Remove Diet Plan</button>:""}
+            {removebutton ? <div className={`card-body my-3 text text-${props.mode==="light"?"dark":"white"}`}>
+                <h4 >Do You want to remove diet plan?</h4>
+                <div>
+                <button className="btn btn-danger fw-bold btn-md col-1 mx-2" onClick={() => {setclicked(0);setDietplan(0);setremovebutton(0);;updateData2()}}>Yes</button>
+                <button className="btn btn-danger fw-bold btn-md col-1 mx-2" onClick={()=>setremovebutton(0)}>No</button>
+                </div>
+            </div>:""}
+            
             
             {/* <Diet mode={props.mode}/> */}
             </div>
