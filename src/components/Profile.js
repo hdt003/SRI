@@ -140,7 +140,7 @@ function setupdatelast(temp)
                 <h5 className={`p-3 col-2 bg-${props.mode==="light"?"white bg-gradient":"dark bg-gradient"}  bg-opacity-25 border border-light  rounded-3`} style={{minWidth:"90px"}}>First Name:</h5>
                 {/*  */}
                 <div className='col-8 px-2 'style={{minWidth:"99px"}}>
-                <input className={`${props.mode==="light"?"light1":"dark1"} px-3 col-12 bg-${props.mode==="light"?"white fw-bold bg-gradient":"dark bg-gradient"} bg-opacity-25 border border-light rounded-3`} style={{minWidth:"90px",minHeight:"62px",fontSize:"23px",background:`${props.mode==="light"?"white":"rgb(24,24,24)"}`,color:`${props.mode==="light"?"black":"white"}`}} id="exampleFormControlInput3" value={fname!==""?fname:""} placeholder={fname!==""?"":"Enter First Name"} onChange={(event)=>{setupdatefirst(event.target.value)}}/>
+                <input className={`${props.mode==="light"?"light1":"dark1"} px-3 fw-bold col-12 bg-${props.mode==="light"?"white bg-gradient":"dark bg-gradient"} bg-opacity-25 border border-light rounded-3`} style={{minWidth:"90px",minHeight:"62px",fontSize:"23px",background:`${props.mode==="light"?"white":"rgb(24,24,24)"}`,color:`${props.mode==="light"?"black":"white"}`}} id="exampleFormControlInput3" value={fname!==""?fname:""} placeholder={fname!==""?"":"Enter First Name"} onChange={(event)=>{setupdatefirst(event.target.value)}}/>
                 </div>
                         
                 {/*  */}
