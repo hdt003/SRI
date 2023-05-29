@@ -16,7 +16,9 @@ export default function Item(props) {
     video:props.video ,
     name:props.name,
     address:props.address,
-    calories:props.calories
+    calories:props.calories,
+    totalRating:props.totalRating,
+    usersRated:props.usersRated
   }
 },[])
   function content()

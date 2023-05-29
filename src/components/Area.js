@@ -231,6 +231,8 @@ async function fetchData() {
                           name={element.name?element.name:"name"}
                           review={element.review}
                           calories={element.calories}
+                          totalRating={element.totalRating}
+                          usersRated={element.usersRated}
                           func={pull_data}
                           address={element.address}
                           mode={props.mode}
@@ -267,6 +269,8 @@ async function fetchData() {
                           name={obj2.name}
                           address={obj2.address}
                           calories={obj2.calories}
+                          totalRating={obj2.totalRating}
+                          usersRated={obj2.usersRated}
                           mode={props.mode}
                           uid={props.uid}
                            />}
