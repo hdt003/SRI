@@ -163,18 +163,18 @@ return (
         <p >Food Type : {props.food_type}</p>
         <p >Calories : {props.calories}</p>
         <p className="rating">
-            <h5 className="heading"><b>Rating:</b> </h5>   
-            {databaseRating()}
+            <h5 className="heading"><b>Rating:</b> {databaseRating()}</h5>   
+            
         </p>    
         <p className="rating2">
-            <h5 className="heading"><b>Rate Now:</b> </h5>   
-            {UserRating()}
+            <p className="heading fs-5"><b>Rate Now:</b> {UserRating()}</p>   
         </p>    
-        <p className={`fs-3 text text-`} style={{color: `${props.mode==="dark"?"white":"black"}`}} >Price : &#8377; {props.price}</p>
-        </div>
+        <p className={`fs-5 text text-`} style={{color: `${props.mode==="dark"?"white":"black"}`}} >Price : &#8377; {props.price}</p>
         <div className="text-center">
-          <button className="btn btn-danger fw-bold btn-lg" onClick={insertInCart}>Add To Cart</button>
+          <button className="btn btn-danger fw-bold btn-md" onClick={insertInCart}>Add To Cart</button>
         </div>
+        </div>
+        
         </b>
         </div>
       </div>
