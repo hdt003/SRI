@@ -31,7 +31,7 @@ export default function NavBar(props) {
           
           <h3><img src="https://www.linkpicture.com/q/7896.png" alt="..." height="38px" width="35px"/></h3>
           <h3 style={{color: `${props.mode==="light"?"black":"white"}`, "textDecoration": "none"}}>Menu App</h3>
-          <div className="nav-link-wrapper hover-underline-animation"><Link style={{color: `${props.mode==="light"?"black":"white"}`, "textDecoration": "none"}} to="/">Home</Link></div>
+          <div className="nav-link-wrapper hover-underline-animation"><a href="/" style={{color: `${props.mode==="light"?"black":"white"}`, "textDecoration": "none"}} >Home</a></div>
           <div className="nav-item dropdown hover-underline-animation">
           <Link style={{color: `${props.mode==="light"?"black":"white"}`, "textDecoration": "none"}} className="nav-link dropdown-toggle " to="/#" role="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
             Filter By 
@@ -95,7 +95,7 @@ export default function NavBar(props) {
         
         <div className="nav-link-wrapper hover-underline-animation px-3 pt-3">
           <div className="d-flex justify-content-around">
-        <p  style={{color: `${props.mode==="light"?"black":"white"}`}}>Switch Mode </p>
+        <p  style={{color: `${props.mode==="light"?"black":"white"}`}}>Light Mode </p>
         <p className="px-1"> </p>
         <label className="switch">
         <input  type="checkbox" onClick={() => {props.togglemode();props.alert()}}/>
