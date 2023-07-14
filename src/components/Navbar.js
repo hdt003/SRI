@@ -30,7 +30,7 @@ export default function NavBar(props) {
         <div className="nav-links" style={{background:`${props.mode==="light"?"white":""}`,color: `${props.mode==="light"?"black":"white"}`, "textDecoration": "none"}}>
           
           <h3><img src="https://www.linkpicture.com/q/7896.png" alt="..." height="38px" width="35px"/></h3>
-          <h3 style={{color: `${props.mode==="light"?"black":"white"}`, "textDecoration": "none"}}>Menu App</h3>
+          <h4 style={{color: `${props.mode==="light"?"black":"white"}`, "textDecoration": "none", "paddingTop": "13px"}}>Food Delivery App</h4>
           <div className="nav-link-wrapper hover-underline-animation"><a href="/" style={{color: `${props.mode==="light"?"black":"white"}`, "textDecoration": "none"}} >Home</a></div>
           <div className="nav-item dropdown hover-underline-animation">
           <Link style={{color: `${props.mode==="light"?"black":"white"}`, "textDecoration": "none"}} className="nav-link dropdown-toggle " to="/#" role="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
